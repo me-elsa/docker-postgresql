@@ -23,7 +23,7 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "03017158007"
       POSTGRES_DB: "crudapp"
-      POSTGRES_HOST: "172.18.0.2"
+      POSTGRES_HOST: "docker-postgres-1"
       POSTGRES_PORT: 5432
 
     depends_on:

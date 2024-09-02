@@ -1,0 +1,46 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3006:3006"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    command: npm start
+    depends_on:
+      - backend
+  # 172.18.0.2
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "03017158007"
+      POSTGRES_DB: "crudapp"
+      POSTGRES_HOST: "172.18.0.2"
+      POSTGRES_PORT: 5432
+
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "03017158007"
+      POSTGRES_DB: "crudapp"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  logs:
+
+

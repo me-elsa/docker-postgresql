@@ -1,3 +1,39 @@
+
+# services:
+#   frontend:
+#     build:
+#       context: ./frontend
+#     ports:
+#       - "3006:3006"
+#     depends_on:
+#       - backend
+
+#   backend:
+#     build:
+#       context: ./backend 
+#     ports: 
+#      - "5000:5000" 
+#     environment: 
+#      - DATABASE_URL=postgresql://postgres:03017158007@docker-postgres-1:5432/postgres
+
+#     depends_on: 
+#     - docker-postgres-1
+  
+  
+#   docker-postgres-1:
+#     image: postgres:14-alpine
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: 03017158007
+#       POSTGRES_DB: postgres
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres_data:
+
 services:
   frontend:
     build: ./frontend
@@ -22,7 +58,7 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "03017158007"
-      POSTGRES_DB: "crudapp"
+      POSTGRES_DB: "postgres"
       POSTGRES_HOST: "docker-postgres-1"
       POSTGRES_PORT: 5432
 
